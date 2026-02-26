@@ -4,6 +4,6 @@ public class demo{
  System.out.println("My name is luffy");
         for(i=0;i<5;i++){
             System.out.println(i);
-            
+        }
     }
 }
