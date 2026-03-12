@@ -14,8 +14,8 @@ pipeline {
                 alwaysLinktoLastBuild:false,
                 keepAll:false,
                 reportDir:'.',
-                reportFiles:hello.html
-                report:MY FIRST
+                reportFiles:'hello.html',
+                reportName:'MY FIRST'
                 ])
             }
         }
