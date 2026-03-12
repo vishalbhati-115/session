@@ -2,24 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-                git 'https://github.com/vishalbhati-115/session.git'
-    
+               git 'https://github.com/vishalbhati-115/session.git'
             }
-       }
-         stage('Build') {
+        }
+         stage('publish') {
             steps {
-                bat 'javac demo.java'
-    
+            publishHTML([
+                allowmissing:true,
+                alwaysLinktoLastBuild:false,
+                keepAll:false,
+                reportDir:'.',
+                reportFiles:hello.html
+                report:MY FIRST
+                ])
             }
-       }
-         stage('Execute') {
-            steps {
-                bat 'java demo'
-    
-            }
-       }
-       
+        }
     }
 }
