@@ -4,20 +4,27 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-               git 'https://github.com/vishalbhati-115/session.git'
+               git url:'https://github.com/vishalbhati-115/session.git',bracnch: 'master'
             }
         }
-         stage('publish') {
+         stage('Build Image') {
             steps {
-            publishHTML([
-                allowMissing:true,
-                alwaysLinkToLastBuild:false,
-                keepAll:false,
-                reportDir:'.',
-                reportFiles:"hello.html",
-                reportName:"MY HELLO WORLD"
-                ])
+            bat 'docker build -t mywebsite .'
             }
         }
+    
+    stages('Stop old Container'){
+        steps{
+            bat 'docker stop mycont || exit 0'
+            bat 'docker rm mycont || exit 0'
+        }
+    }
+    stages('Run Image - Containerize'){
+        steps{
+            bat 'docker run -d -p 7000:80 --name mycont mywebsite'
+           
+        }
+    }
+        
     }
 }
