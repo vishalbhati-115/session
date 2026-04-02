@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-               git 'https://github.com/vishalbhati-115/session.git',branch: 'master'
+               git url:'https://github.com/vishalbhati-115/session.git',branch: 'master'
             }
         }
          stage('Build Image') {
